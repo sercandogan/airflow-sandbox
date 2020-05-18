@@ -1,19 +1,13 @@
 # airflow-sandbox
 
-
-
-#### Create data warehouse:
+Simple ETL and ML pipeline with Churn data. Analysis and the model notebook can be found at https://github.com/sercandogan/churn-telco
+### Build
 ```bash
-docker-compose exec postgres bash
+docker-compose up
 ```
-```bash
-psql -U airflow
-```
-```bash
- CREATE DATABASE dw OWNER airflow;
-```
+After building airflow and postgresql you need some configurations:
 
-#### Airflow create user
+#### Create Airflow user:
 ```bash
 usage: airflow create_user [-h] [-r ROLE] [-u USERNAME] [-e EMAIL]
                            [-f FIRSTNAME] [-l LASTNAME] [-p PASSWORD]
@@ -37,3 +31,22 @@ optional arguments:
                         Do not prompt for password. Use random string instead
 
 ```
+
+#### Create data warehouse:
+```bash
+docker-compose exec postgres bash
+```
+```bash
+psql -U airflow
+```
+```bash
+ CREATE DATABASE dw OWNER airflow;
+```
+
+# Dags
+
+## Load data
+![](src/img/load_data.png)
+
+## Train and Prediction
+![](src/img/train.png)
